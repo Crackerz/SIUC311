@@ -8,20 +8,31 @@
     <link href="//Microsoft.WinJS.2.0/css/ui-dark.css" rel="stylesheet" />
     <script src="//Microsoft.WinJS.2.0/js/base.js"></script>
     <script src="//Microsoft.WinJS.2.0/js/ui.js"></script>
-
+    <script src="/js/model/AppNamespace.js"></script>
+    <script src="/js/model/ReportList.js"></script>
     <link href="/css/default.css" rel="stylesheet" />
     <link href="/pages/split/split.css" rel="stylesheet" />
     <script src="/js/data.js"></script>
     <script src="/pages/split/split.js"></script>
 </head>
 <body>
+    <div data-win-control="WinJS.UI.NavBar" data-win-options="{layout:'commands'}">
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                style="float:right;"
+                data-win-options="{
+                    id: 'add',
+                    icon: 'add',
+                    label: 'add',
+                    type: 'button'
+                }"></button>
+    </div>
     <!-- This template is used to display each item in the ListView declared below. -->
     <div class="itemtemplate" data-win-control="WinJS.Binding.Template">
         <div class="item">
-            <img class="item-image" src="#" data-win-bind="src: backgroundImage; alt: title" />
+            <!--img class="item-image" src="#" data-win-bind="src: backgroundImage; alt: title" /-->
             <div class="item-info">
-                <h3 class="item-title win-type-ellipsis" data-win-bind="textContent: title"></h3>
-                <h6 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: subtitle"></h6>
+                <h3 class="item-title win-type-ellipsis" data-win-bind="textContent: dawgtag"></h3>
+                <h6 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: type"></h6>
             </div>
         </div>
     </div>
@@ -51,12 +62,12 @@
             <article>
                 <header class="header">
                     <div class="text">
-                        <h2 class="article-title win-type-ellipsis" data-win-bind="textContent: title"></h2>
-                        <h4 class="article-subtitle" data-win-bind="textContent: subtitle"></h4>
+                        <h2 class="article-title win-type-ellipsis" data-win-bind="textContent: type"></h2>
+                        <h4 class="article-subtitle" data-win-bind="textContent: time"></h4>
                     </div>
-                    <img class="article-image" src="#" data-win-bind="src: backgroundImage; alt: title" />
+                    <!--img class="article-image" src="#" data-win-bind="src: backgroundImage; alt: type" /-->
                 </header>
-                <div class="article-content" data-win-bind="innerHTML: content"></div>
+                <div class="article-content" data-win-bind="innerHTML: desc"></div>
             </article>
         </div>
     </div>

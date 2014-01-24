@@ -2,7 +2,6 @@
 // http://go.microsoft.com/fwlink/?LinkID=232447
 (function () {
     "use strict";
-    APP311.namespace("APP311.test.testing");
     var activation = Windows.ApplicationModel.Activation;
     var app = WinJS.Application;
     var nav = WinJS.Navigation;

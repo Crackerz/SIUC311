@@ -8,8 +8,6 @@
 
     ui.Pages.define("/pages/split/split.html", {
 
-        _group: null,
-        /// <field type="WinJS.Binding.List" />
         _items: null,
         _itemSelectionIndex: -1,
         _wasSingleColumn: false,
@@ -18,16 +16,15 @@
         init: function (element, options) {
             // Store information about the group and selection that this page will
             // display.
-            this._group = Data.resolveGroupReference(options.groupKey);
-            this._items = Data.getItemsFromGroup(this._group);
-            this._itemSelectionIndex = (options && "selectedIndex" in options) ? options.selectedIndex : -1;
+            this._items = Data.items;
             this.itemDataSource = this._items.dataSource;
+            this._itemSelectionIndex = (options && "selectedIndex" in options) ? options.selectedIndex : -1;
             this.selectionChanged = ui.eventHandler(this._selectionChanged.bind(this));
         },
 
         // This function is called whenever a user navigates to this page.
         ready: function (element, options) {
-            element.querySelector("header[role=banner] .pagetitle").textContent = this._group.title;
+            element.querySelector("header[role=banner] .pagetitle").textContent = "Tickets";
 
             this._updateVisibility(element);
             if (this._isSingleColumn()) {
@@ -69,12 +66,10 @@
                     // If the app has snapped into a single-column detail view,
                     // add the single-column list view to the backstack.
                     nav.history.current.state = {
-                        groupKey: this._group.key,
                         selectedIndex: this._itemSelectionIndex
                     };
                     nav.history.backStack.push({
-                        location: "/pages/split/split.html",
-                        state: { groupKey: this._group.key }
+                        location: "/pages/split/split.html"
                     });
                     element.querySelector(".articlesection").focus();
                 } else {
@@ -119,7 +114,7 @@
                         // If snapped or portrait, navigate to a new page containing the
                         // selected item's details.
                         setImmediate(function () {
-                            nav.navigate("/pages/split/split.html", { groupKey: this._group.key, selectedIndex: this._itemSelectionIndex });
+                            nav.navigate("/pages/split/split.html", {selectedIndex: this._itemSelectionIndex });
                         }.bind(this));
                     } else {
                         // If fullscreen or filled, update the details column with new data.
