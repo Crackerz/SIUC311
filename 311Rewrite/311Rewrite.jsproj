@@ -64,10 +64,8 @@
     <Content Include="js\default.js" />
     <Content Include="js\Model\AppNamespace.js" />
     <Content Include="js\Model\ReportList.js" />
+    <Content Include="js\Model\Server.js" />
     <Content Include="js\navigator.js" />
-    <Content Include="pages\add\add.css" />
-    <Content Include="pages\add\add.html" />
-    <Content Include="pages\add\add.js" />
     <Content Include="pages\items\items.css" />
     <Content Include="pages\items\items.html" />
     <Content Include="pages\items\items.js" />

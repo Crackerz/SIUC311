@@ -9,6 +9,7 @@
     <script src="//Microsoft.WinJS.2.0/js/base.js"></script>
     <script src="//Microsoft.WinJS.2.0/js/ui.js"></script>
     <script src="/js/model/AppNamespace.js"></script>
+    <script src="/js/model/Server.js"></script>
     <script src="/js/model/ReportList.js"></script>
     <link href="/css/default.css" rel="stylesheet" />
     <link href="/pages/split/split.css" rel="stylesheet" />
@@ -31,8 +32,8 @@
         <div class="item">
             <!--img class="item-image" src="#" data-win-bind="src: backgroundImage; alt: title" /-->
             <div class="item-info">
-                <h3 class="item-title win-type-ellipsis" data-win-bind="textContent: dawgtag"></h3>
-                <h6 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: type"></h6>
+                <h3 class="item-title win-type-ellipsis" data-win-bind="textContent: dawgTag"></h3>
+                <h6 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: reportType"></h6>
             </div>
         </div>
     </div>
@@ -62,12 +63,12 @@
             <article>
                 <header class="header">
                     <div class="text">
-                        <h2 class="article-title win-type-ellipsis" data-win-bind="textContent: type"></h2>
-                        <h4 class="article-subtitle" data-win-bind="textContent: time"></h4>
+                        <h2 class="article-title win-type-ellipsis" data-win-bind="textContent: reportType"></h2>
+                        <h4 class="article-subtitle" data-win-bind="textContent: timestamp"></h4>
                     </div>
                     <!--img class="article-image" src="#" data-win-bind="src: backgroundImage; alt: type" /-->
                 </header>
-                <div class="article-content" data-win-bind="innerHTML: desc"></div>
+                <div class="article-content" data-win-bind="innerHTML: description"></div>
             </article>
         </div>
     </div>
