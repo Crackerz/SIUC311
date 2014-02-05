@@ -2,7 +2,7 @@
 var serverns = serverns || APP311.namespace("APP311.Server");
 
 serverns.url = "http://127.0.0.1";
-serverns.accesspoints = new Object();
+serverns.accesspoints = {};
 serverns.accesspoints.ticket = "/ticket";
 serverns.accesspoints.update = "/update";
 
