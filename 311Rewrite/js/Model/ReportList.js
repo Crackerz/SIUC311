@@ -20,12 +20,6 @@ reportns.list.newItem = function (reportType, studentID, description, latitude, 
     };
 };
 
-//reportns.add adds a new item to reportns.list, uniq_id is optional.
-reportns.list.add = function (reportType, studentID, description, latitude, longitude, image, timeStamp, uniq_id) {
-    uniq_id = uniq_id || -1; // a uniq_id should only exist if being pulled from server
-    this.push(this.newItem(reportType, studentID, description, latitude, longitude, image, timeStamp));
-};
-
 reportns.registerCallback = function (func) {
     reportns.callbacks.push(func);
 };
