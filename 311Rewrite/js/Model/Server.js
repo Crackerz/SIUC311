@@ -85,7 +85,7 @@ serverns.scrubTimestamp = function (timestamp) {
 };
 
 serverns.updateTimestamp = function (timestamp) {
-    if(!serverns.currentTimestamp || parseInt(timestamp)>parseInt(serverns.currentTimestamp)) {
+    if(!serverns.currentTimestamp || parseInt(timestamp,10)>parseInt(serverns.currentTimestamp,10)) {
         serverns.currentTimestamp = timestamp;
     }
 };
