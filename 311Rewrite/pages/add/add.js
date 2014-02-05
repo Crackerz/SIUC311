@@ -5,10 +5,9 @@
     var nav = WinJS.Navigation;
     var ui = WinJS.UI;
     var utils = WinJS.Utilities;
+    var watchid;
 
-    
-
-    ui.Pages.define("/pages/split/split.html", {
+    ui.Pages.define("/pages/add/add.html", {
 
         _items: null,
         _itemSelectionIndex: -1,
@@ -29,22 +28,36 @@
             element.querySelector("header[role=banner] .pagetitle").textContent = "Tickets";
 
             this._updateVisibility(element);
-            if (this._isSingleColumn()) {
-                this._wasSingleColumn = true;
-                if (this._itemSelectionIndex >= 0) {
-                    // For single-column detail view, load the article.
-                    binding.processAll(element.querySelector(".articlesection"), this._items.getAt(this._itemSelectionIndex));
+
+            //Lets go ahead and grab the user's dawgtag if it is accessible
+            Windows.System.UserProfile.UserInformation.getDomainNameAsync().done(function (result) {
+                if (result) {
+                    result = result.split("\\");
+                    document.getElementById("dawgTag").value = result[result.length - 1];
+                } else {
+
                 }
-            } else {
-                // If this page has a selectionIndex, make that selection
-                // appear in the ListView.
-                var listView = element.querySelector(".itemlist").winControl;
-                listView.selection.set(Math.max(this._itemSelectionIndex, 0));
+            });
+
+            //Grab the user's current location
+            var geolocation = window.navigator.geolocation;
+            if (geolocation != null) {
+                //this call will prompt for access.
+                geolocation.getCurrentPosition(function (position) {
+                    document.getElementById("latitude").value = position.coords.latitude;
+                    document.getElementById("longitude").value = position.coords.longitude;
+                });
             }
+
+            //Update location as the user moves
+            watchid = window.navigator.geolocation.watchPosition(function (position) {
+                document.getElementById("latitude").value = position.coords.latitude;
+                document.getElementById("longitude").value = position.coords.longitude;
+            });
         },
 
         unload: function () {
-
+            navigator.geolocation.clearWatch(watchid);
         },
 
         updateLayout: function (element) {
@@ -106,45 +119,33 @@
         },
 
         _selectionChanged: function (args) {
-            var listView = args.currentTarget.winControl;
-            var details;
-            // By default, the selection is restriced to a single item.
-            listView.selection.getItems().done(function updateDetails(items) {
-                if (items.length > 0) {
-                    this._itemSelectionIndex = items[0].index;
-                    if (this._isSingleColumn()) {
-                        // If snapped or portrait, navigate to a new page containing the
-                        // selected item's details.
-                        setImmediate(function () {
-                            nav.navigate("/pages/split/split.html", {selectedIndex: this._itemSelectionIndex });
-                        }.bind(this));
-                    } else {
-                        // If fullscreen or filled, update the details column with new data.
-                        details = document.querySelector(".articlesection");
-                        binding.processAll(details, items[0].data);
-                        details.scrollTop = 0;
-                    }
-                }
-            }.bind(this));
+           
         },
 
         // This function toggles visibility of the two columns based on the current
         // view state and item selection.
         _updateVisibility: function (element) {
-            var splitPage = element.querySelector(".splitpage");
-            if (this._isSingleColumn()) {
-                if (this._itemSelectionIndex >= 0) {
-                    utils.addClass(splitPage, "itemdetail");
-                    element.querySelector(".articlesection").focus();
-                } else {
-                    utils.addClass(splitPage, "groupdetail");
-                    element.querySelector(".itemlist").focus();
-                }
-            } else {
-                utils.removeClass(splitPage, "groupdetail");
-                utils.removeClass(splitPage, "itemdetail");
-                element.querySelector(".itemlist").focus();
-            }
         }
     });
 })();
+/****************
+ * END WIN.CRAP *
+ ****************/
+var queuens = queuens || APP311.namespace("APP311.Queue");
+
+function addToQueue() {
+    var dawgTag = document.getElementById("dawgTag").value || "null";
+    var reportType = document.getElementById("reportType").value || "other";
+    var description = document.getElementById("description").value || "";
+    var longitude = document.getElementById("longitude").value || 0;
+    var latitude = document.getElementById("latitude").value || 0;
+    queuens.addTicket({
+        dawgTag: dawgTag,
+        reportType: reportType,
+        description: description,
+        longitude: longitude,
+        latitude: latitude
+    });
+    var nav = WinJS.Navigation;
+    nav.back(1); //go back to where we came from
+};

@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>splitPage</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.2.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.2.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.2.0/js/ui.js"></script>
+    <script src="/js/model/AppNamespace.js"></script>
+    <script src="/js/model/Queue.js"></script>
+    <script src="/js/model/Server.js"></script>
+    <script src="/js/model/ReportList.js"></script>
+    <link href="/css/default.css" rel="stylesheet" />
+    <link href="/pages/add/add.css" rel="stylesheet" />
+    <script src="/pages/add/add.js"></script>
+</head>
+<body>
+    <div data-win-control="WinJS.UI.NavBar" data-win-options="{layout:'commands'}">
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                style="float:left;"
+                data-win-options="{
+                    id: 'add',
+                    icon: 'add',
+                    label: 'add',
+                    type: 'button'
+                }"></button>
+    </div>
+
+    <div class="content">
+        <header aria-label="Header content" role="banner">
+            <button data-win-control="WinJS.UI.BackButton"></button>
+            <h1 class="titlearea win-type-ellipsis">
+                <span class="pagetitle">New Ticket</span>
+            </h1>
+        </header>
+        <div id="formgroup">
+            <label for="dawgTag">DawgTag: </label>
+            <input id="dawgTag" /><br />
+            <label for="reportType">Report Type:</label>
+            <select id="reportType">
+                <option value="Pothole">Pothole</option>
+                <option value="Broken parking meter">Broken parking meter</option>
+                <option value="Stolen property">Stolen property</option>
+                <option value="Stray animal">Stray animal</option>
+                <option value="Animal Bite">Animal Bite</option>
+                <option value="Garbage Collection">Garbage Collection</option>
+                <option value="Abandon automobile">Abandon automobile</option>
+                <option value="Abandon property">Abandon property</option>
+                <option value="Illegal parking">Illegal parking</option>
+                <option value="Illegal dumping">Illegal dumping</option>
+                <option value="Street light repair">Street light repair</option>
+                <option value="Tree services">Tree services</option>
+                <option value="Plumbing">Plumbing</option>
+                <option value="Trash">Trash</option>
+                <option value="Building damages">Building damages</option>
+                <option value="Graffiti">Graffiti</option>
+                <option value="Sidewalk condition">Sidewalk condition</option>
+                <option value="Lost property">Lost property</option>
+                <option value="Dangerous weather">Dangerous weather</option>
+                <option value="Other">Other</option>
+            </select><br />
+            <label for="description">Description:</label>
+            <textarea id="description" ></textarea><br />
+            <input id="longitude" style="display:none;" /><br />
+            <input id="latitude" style="display:none;" /><br />
+            <button onclick="addToQueue();">Add</button>
+        </div>
+    </div>
+</body>
+</html>

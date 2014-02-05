@@ -6,20 +6,6 @@ var serverns = serverns || APP311.namespace("APP311.Server");
 reportns.list = [];
 reportns.callbacks = [];
 
-//reportns.newItem generates an object for storing in our report list
-reportns.list.newItem = function (reportType, studentID, description, latitude, longitude, image, timeStamp, uniq_id) {
-    return {
-        id: uniq_id,
-        reportType: reportType,
-        dawgTag: studentID,
-        description: description,
-        latitude: latitude,
-        longitude: longitude,
-        imageFile: image,
-        timestamp: timeStamp,
-    };
-};
-
 reportns.registerCallback = function (func) {
     reportns.callbacks.push(func);
 };

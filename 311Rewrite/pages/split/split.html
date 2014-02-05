@@ -9,6 +9,7 @@
     <script src="//Microsoft.WinJS.2.0/js/base.js"></script>
     <script src="//Microsoft.WinJS.2.0/js/ui.js"></script>
     <script src="/js/model/AppNamespace.js"></script>
+    <script src="/js/model/Queue.js"></script>
     <script src="/js/model/Server.js"></script>
     <script src="/js/model/ReportList.js"></script>
     <link href="/css/default.css" rel="stylesheet" />
@@ -25,7 +26,8 @@
                     icon: 'add',
                     label: 'add',
                     type: 'button'
-                }"></button>
+                }"
+                onclick="WinJS.Navigation.navigate('/pages/add/add.html');"></button>
     </div>
     <!-- This template is used to display each item in the ListView declared below. -->
     <div class="itemtemplate" data-win-control="WinJS.Binding.Template">
