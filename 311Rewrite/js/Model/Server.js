@@ -63,7 +63,7 @@ serverns.receivedUpdate = function() {
 serverns.syncTicket = function (ticket,callback) {
     var json = JSON.stringify(ticket);
     var serverRequest = new XMLHttpRequest(); //despite its name, not for xml. We will be getting JSON.
-    serverRequest.onload = function() {console.log(JSON.parse(this.responseText).id)};
+    //serverRequest.onload = function() {console.log(JSON.parse(this.responseText).id)};
     var url = serverns.url + serverns.accesspoints.ticket;
     serverRequest.open("POST", url);
     serverRequest.send(json);

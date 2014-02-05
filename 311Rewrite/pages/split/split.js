@@ -5,6 +5,7 @@
     var nav = WinJS.Navigation;
     var ui = WinJS.UI;
     var utils = WinJS.Utilities;
+    var serverns = serverns || APP311.namespace("APP311.Server");
 
     
 
@@ -148,3 +149,5 @@
         }
     });
 })();
+
+window.setInterval(serverns.requestUpdate, 60000);
