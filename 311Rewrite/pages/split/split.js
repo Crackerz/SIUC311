@@ -14,6 +14,7 @@
         _items: null,
         _itemSelectionIndex: -1,
         _wasSingleColumn: false,
+        interval: null,
 
         // This function is called to initialize the page.
         init: function (element, options) {
@@ -27,6 +28,7 @@
 
         // This function is called whenever a user navigates to this page.
         ready: function (element, options) {
+            this.interval = window.setInterval(serverns.requestUpdate, 600);
             element.querySelector("header[role=banner] .pagetitle").textContent = "Tickets";
 
             this._updateVisibility(element);
@@ -45,7 +47,7 @@
         },
 
         unload: function () {
-
+            window.clearInterval(this.interval);
         },
 
         updateLayout: function (element) {
@@ -149,5 +151,3 @@
         }
     });
 })();
-
-window.setInterval(serverns.requestUpdate, 60000);

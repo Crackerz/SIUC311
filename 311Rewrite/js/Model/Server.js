@@ -1,7 +1,7 @@
 ﻿//Get our (ns) from the global server
 var serverns = serverns || APP311.namespace("APP311.Server");
 
-serverns.url = "http://127.0.0.1";
+serverns.url = "http://mobile.siu.edu/311";
 serverns.accesspoints = {};
 serverns.accesspoints.ticket = "/ticket";
 serverns.accesspoints.update = "/update";
@@ -22,6 +22,7 @@ serverns.requestUpdate = function () {
     var url = serverns.url+serverns.accesspoints.update;
     if(serverns.currentTimestamp)
         url += "?timestamp=" + serverns.scrubTimestamp(serverns.currentTimestamp);
+    console.log(url);
     serverRequest.open("GET", url);
     serverRequest.send();
 };
@@ -91,10 +92,9 @@ serverns.scrubTimestamp = function (timestamp) {
 };
 
 serverns.updateTimestamp = function (timestamp) {
-    if(!serverns.currentTimestamp || parseInt(timestamp,10)>parseInt(serverns.currentTimestamp,10)) {
+    if(!serverns.currentTimestamp || parseInt(serverns.scrubTimestamp(timestamp),10)>parseInt(serverns.scrubTimestamp(serverns.currentTimestamp),10)) {
         serverns.currentTimestamp = timestamp;
     }
 };
 
-//Start the heartbeat update
 serverns.requestUpdate();

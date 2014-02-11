@@ -23,6 +23,7 @@
   <Capabilities>
     <Capability Name="internetClient" />
     <Capability Name="enterpriseAuthentication" />
+    <Capability Name="privateNetworkClientServer" />
     <DeviceCapability Name="location" />
   </Capabilities>
 </Package>
