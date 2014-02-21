@@ -55,10 +55,10 @@ serverns.receivedUpdate = function() {
 
         }
     }
-
-    for (var i = 0; i < serverns.updateCompleteCallback.length; i++) {
-        serverns.updateCompleteCallback[i]();
-    }
+    if(update.tickets.length>0)
+        for (var i = 0; i < serverns.updateCompleteCallback.length; i++) {
+            serverns.updateCompleteCallback[i]();
+        }
 };
 
 serverns.syncTicket = function (ticket,callback) {
