@@ -44,20 +44,30 @@
             if (geolocation != null) {
                 //this call will prompt for access.
                 geolocation.getCurrentPosition(function (position) {
-                    document.getElementById("latitude").value = position.coords.latitude;
-                    document.getElementById("longitude").value = position.coords.longitude;
+                    var lat = position.coords.latitude;
+                    var long = position.coords.longitude;
+                    document.getElementById("latitude").value = lat;
+                    document.getElementById("longitude").value = long;
+                    setMap(long, lat, long, lat, position.coords.accuracy);
+                    document.getElementById("accuracy").innerHTML = "Accurrate up to: " + position.coords.accuracy + " meters";
                 });
             }
 
             //Update location as the user moves
             watchid = window.navigator.geolocation.watchPosition(function (position) {
-                document.getElementById("latitude").value = position.coords.latitude;
-                document.getElementById("longitude").value = position.coords.longitude;
+                var lat = position.coords.latitude;
+                var long = position.coords.longitude;
+                document.getElementById("latitude").value = lat;
+                document.getElementById("longitude").value = long;
+                setMap(long, lat, long, lat, position.coords.accuracy);
+                document.getElementById("accuracy").innerHTML = "Accurrate up to: " + position.coords.accuracy + " meters";
             });
+            setMap(-89.219241, 37.717491);
         },
 
         unload: function () {
             navigator.geolocation.clearWatch(watchid);
+            delete queuens.map;
         },
 
         updateLayout: function (element) {
@@ -149,3 +159,13 @@ function addToQueue() {
     var nav = WinJS.Navigation;
     nav.back(1); //go back to where we came from
 };
+
+function setMap(long, lat, plong, plat, accuracy) {
+    queuens.map = queuens.map || new L.map('basicMap');
+    var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    var osm = new L.TileLayer(osmUrl, { minZoom: 12, maxZoom: 19});
+
+    // start the map in South-East England
+    queuens.map.setView(new L.LatLng(lat, long), 24);
+    queuens.map.addLayer(osm);
+}

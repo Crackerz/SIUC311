@@ -14,6 +14,14 @@
     <script src="/js/model/ReportList.js"></script>
     <link href="/css/default.css" rel="stylesheet" />
     <link href="/pages/add/add.css" rel="stylesheet" />
+
+    <!--PURECSS-->
+    <link href="/css/pure-min.css" rel="stylesheet" />
+
+    <!--OSM and Leaflet-->
+    <link href="/leaflet/leaflet.css" rel="stylesheet" />
+    <script src="/leaflet/leaflet.js"></script>
+
     <script src="/pages/add/add.js"></script>
 </head>
 <body>
@@ -28,44 +36,76 @@
                 }"></button>
     </div>
 
-    <div class="content">
-        <header aria-label="Header content" role="banner">
-            <button data-win-control="WinJS.UI.BackButton"></button>
-            <h1 class="titlearea win-type-ellipsis">
-                <span class="pagetitle">New Ticket</span>
-            </h1>
-        </header>
-        <div id="formgroup">
-            <label for="dawgTag">DawgTag: </label>
-            <input id="dawgTag" /><br />
-            <label for="reportType">Report Type:</label>
-            <select id="reportType">
-                <option value="Pothole">Pothole</option>
-                <option value="Broken parking meter">Broken parking meter</option>
-                <option value="Stolen property">Stolen property</option>
-                <option value="Stray animal">Stray animal</option>
-                <option value="Animal Bite">Animal Bite</option>
-                <option value="Garbage Collection">Garbage Collection</option>
-                <option value="Abandon automobile">Abandon automobile</option>
-                <option value="Abandon property">Abandon property</option>
-                <option value="Illegal parking">Illegal parking</option>
-                <option value="Illegal dumping">Illegal dumping</option>
-                <option value="Street light repair">Street light repair</option>
-                <option value="Tree services">Tree services</option>
-                <option value="Plumbing">Plumbing</option>
-                <option value="Trash">Trash</option>
-                <option value="Building damages">Building damages</option>
-                <option value="Graffiti">Graffiti</option>
-                <option value="Sidewalk condition">Sidewalk condition</option>
-                <option value="Lost property">Lost property</option>
-                <option value="Dangerous weather">Dangerous weather</option>
-                <option value="Other">Other</option>
-            </select><br />
-            <label for="description">Description:</label>
-            <textarea id="description" ></textarea><br />
-            <input id="longitude" style="display:none;" /><br />
-            <input id="latitude" style="display:none;" /><br />
-            <button onclick="addToQueue();">Add</button>
+    <div class="content pure-g-r">
+        <div class="pure-u-1-2">
+            <div class="pure-g">
+                <header aria-label="Header content" role="banner">
+                    <button data-win-control="WinJS.UI.BackButton"></button>
+                    <h1 class="titlearea win-type-ellipsis">
+                        <span class="pagetitle">New Ticket</span>
+                    </h1>
+                </header>
+            </div>
+            <div class="pure-g">
+                <div class="pure-u-1-3"></div>
+                <div class="pure-u-1-3">
+                    <form class="pure-form pure-form-stacked">
+                        <fieldset>
+
+                            <div class="pure-control-group">
+                                <label for="dawgTag">Dawg Tag:</label>
+                                <input type="text" placeholder="Dawg Tag" id="dawgTag" />
+                            </div>
+
+                            <div class="pure-control-group">
+                                <label for="reportType">Report Type:</label>
+                                <select id="reportType">
+                                    <option value="Pothole">Pothole</option>
+                                    <option value="Broken parking meter">Broken parking meter</option>
+                                    <option value="Stolen property">Stolen property</option>
+                                    <option value="Stray animal">Stray animal</option>
+                                    <option value="Animal Bite">Animal Bite</option>
+                                    <option value="Garbage Collection">Garbage Collection</option>
+                                    <option value="Abandon automobile">Abandon automobile</option>
+                                    <option value="Abandon property">Abandon property</option>
+                                    <option value="Illegal parking">Illegal parking</option>
+                                    <option value="Illegal dumping">Illegal dumping</option>
+                                    <option value="Street light repair">Street light repair</option>
+                                    <option value="Tree services">Tree services</option>
+                                    <option value="Plumbing">Plumbing</option>
+                                    <option value="Trash">Trash</option>
+                                    <option value="Building damages">Building damages</option>
+                                    <option value="Graffiti">Graffiti</option>
+                                    <option value="Sidewalk condition">Sidewalk condition</option>
+                                    <option value="Lost property">Lost property</option>
+                                    <option value="Dangerous weather">Dangerous weather</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="pure-control-group">
+                                <label for="description">Description:</label>
+                                <textarea id="description"></textarea>
+                            </div>
+
+                            <input id="longitude" style="display:none;" />
+                            <input id="latitude" style="display:none;" />
+
+                            <div class="pure-controls">
+                                <button class="pure-button pure-button-primary" onclick="addToQueue();">Add</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <div class="pure-g">
+                <div class="pure-u-1">
+                    <div id="accuracy">Accurate Up To:</div>
+                    <div id="basicMap" style="width:100%;height:250px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="pure-u-1-2">
+            Images will go here
         </div>
     </div>
 </body>

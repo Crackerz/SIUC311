@@ -68,6 +68,13 @@
     <Content Include="js\Model\ReportList.js" />
     <Content Include="js\Model\Server.js" />
     <Content Include="js\navigator.js" />
+    <Content Include="leaflet\images\layers-2x.png" />
+    <Content Include="leaflet\images\layers.png" />
+    <Content Include="leaflet\images\marker-icon-2x.png" />
+    <Content Include="leaflet\images\marker-icon.png" />
+    <Content Include="leaflet\images\marker-shadow.png" />
+    <Content Include="leaflet\leaflet.css" />
+    <Content Include="leaflet\leaflet.js" />
     <Content Include="pages\add\add.css" />
     <Content Include="pages\add\add.html" />
     <Content Include="pages\add\add.js" />
