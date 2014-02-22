@@ -2,17 +2,19 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>splitPage</title>
+    <title>Add Ticket</title>
 
     <!-- WinJS references -->
-    <link href="//Microsoft.WinJS.2.0/css/ui-dark.css" rel="stylesheet" />
+    <!--
     <script src="//Microsoft.WinJS.2.0/js/base.js"></script>
     <script src="//Microsoft.WinJS.2.0/js/ui.js"></script>
+    -->
+
+    <!--Will's Custom Code-->
     <script src="/js/model/AppNamespace.js"></script>
     <script src="/js/model/Queue.js"></script>
     <script src="/js/model/Server.js"></script>
     <script src="/js/model/ReportList.js"></script>
-    <link href="/css/default.css" rel="stylesheet" />
     <link href="/pages/add/add.css" rel="stylesheet" />
 
     <!--PURECSS-->
@@ -24,24 +26,13 @@
 
     <script src="/pages/add/add.js"></script>
 </head>
-<body>
-    <div data-win-control="WinJS.UI.NavBar" data-win-options="{layout:'commands'}">
-        <button data-win-control="WinJS.UI.AppBarCommand"
-                style="float:left;"
-                data-win-options="{
-                    id: 'add',
-                    icon: 'add',
-                    label: 'add',
-                    type: 'button'
-                }"></button>
-    </div>
-
+<body onload="onReady();">
     <div class="content pure-g-r">
         <div class="pure-u-1-2">
             <div class="pure-g">
-                <header aria-label="Header content" role="banner">
-                    <button data-win-control="WinJS.UI.BackButton"></button>
-                    <h1 class="titlearea win-type-ellipsis">
+                <header>
+                    <button id="navigateBack">Back</button>
+                    <h1 class="titlearea text-ellipsis">
                         <span class="pagetitle">New Ticket</span>
                     </h1>
                 </header>
